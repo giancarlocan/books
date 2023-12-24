@@ -15,6 +15,11 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    @if (Auth::user()->is_parent)
+                        <x-nav-link :href="route('children.index')" :active="substr(Route::currentRouteName(), 0, 8) == 'children'">
+                            Children
+                        </x-nav-link>
+                    @endif
                     <x-nav-link :href="route('reads.index')" :active="substr(Route::currentRouteName(), 0, 5) == 'reads'">
                         Reads
                     </x-nav-link>
@@ -73,6 +78,11 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            @if (Auth::user()->is_parent)
+                <x-responsive-nav-link :href="route('reads.index')" :active="substr(Route::currentRouteName(), 0, 5) == 'reads'">
+                    Children
+                </x-responsive-nav-link>
+            @endif
             <x-responsive-nav-link :href="route('reads.index')" :active="substr(Route::currentRouteName(), 0, 5) == 'reads'">
                 Reads
             </x-responsive-nav-link>

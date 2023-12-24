@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ParentToChildController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReadController;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +22,8 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function () {
     Route::view('/dashboard', 'dashboard')->name('dashboard');
+
+    Route::get('/children', [ParentToChildController::class, 'index'])->name('children.index');
 
     Route::get('/reads/index', [ReadController::class, 'index'])->name('reads.index');
     Route::get('/reads/create', [ReadController::class, 'create'])->name('reads.create');
