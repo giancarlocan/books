@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\ParentToChild;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreParentToChildRequest;
 use App\Http\Requests\UpdateParentToChildRequest;
-use App\Models\ParentToChild;
 
 class ParentToChildController extends Controller
 {
@@ -13,7 +15,12 @@ class ParentToChildController extends Controller
      */
     public function index()
     {
-        //
+        $relationships = ParentToChild::where('user_id_parent', Auth::user()->id)->get();
+        $children = User::whereIn('id', $relationships->pluck('user_id_child'))->get();
+
+        return view('children.index', [
+            'children' => $children,
+        ]);
     }
 
     /**
