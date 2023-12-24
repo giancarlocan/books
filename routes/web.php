@@ -20,9 +20,7 @@ Route::get('/', function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::view('/dashboard', 'dashboard')->name('dashboard');
 
     Route::get('/reads/index', [ReadController::class, 'index'])->name('reads.index');
     Route::get('/reads/create', [ReadController::class, 'create'])->name('reads.create');
