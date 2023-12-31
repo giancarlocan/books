@@ -11,7 +11,7 @@ class StoreReadRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,12 @@ class StoreReadRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'isbn' => [
+                'required',
+                'numeric',
+                'min:1000000000000',
+                'max:9999999999999',
+            ],
         ];
     }
 }

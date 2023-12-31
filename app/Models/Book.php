@@ -50,6 +50,6 @@ class Book extends Model
         }
 
         // return database info
-        return Book::where('isbn', $isbn)->get();
+        return Book::where('isbn', $isbn)->first();
     }
 }

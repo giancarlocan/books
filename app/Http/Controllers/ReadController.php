@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreReadRequest;
-use App\Http\Requests\UpdateReadRequest;
 use App\Models\Book;
 use App\Models\Read;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StoreReadRequest;
+use App\Http\Requests\UpdateReadRequest;
 
 class ReadController extends Controller
 {
@@ -14,7 +15,11 @@ class ReadController extends Controller
      */
     public function index()
     {
-        return view('read.index');
+        $reads = Read::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->with('book')->get();
+
+        return view('read.index', [
+            'reads' => $reads,
+        ]);
     }
 
     /**
@@ -22,11 +27,11 @@ class ReadController extends Controller
      */
     public function create()
     {
-        $search = Book::search('9780394800011');
+        // $search = Book::search('9780394800011');
 
-        return view('read.create', [
-            'search' => $search,
-        ]);
+        // return view('read.create', [
+        //     'search' => $search,
+        // ]);
     }
 
     /**
@@ -34,7 +39,14 @@ class ReadController extends Controller
      */
     public function store(StoreReadRequest $request)
     {
-        //
+        $book = Book::search($request->isbn);
+        Read::create([
+            'user_id' => Auth::user()->id,
+            'isbn' => $request->isbn,
+            'book_id' => $book->id,
+        ]);
+
+        return redirect('/reads');
     }
 
     /**

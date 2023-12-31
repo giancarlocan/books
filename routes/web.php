@@ -25,8 +25,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/children', [ParentToChildController::class, 'index'])->name('children.index');
 
-    Route::get('/reads/index', [ReadController::class, 'index'])->name('reads.index');
-    Route::get('/reads/create', [ReadController::class, 'create'])->name('reads.create');
+    Route::get('/reads', [ReadController::class, 'index'])->name('reads.index');
+    Route::view('/reads/create', 'read.create')->name('reads.create');
+    Route::post('/reads/create', [ReadController::class, 'store'])->name('reads.store');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

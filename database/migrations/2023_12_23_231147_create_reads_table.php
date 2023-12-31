@@ -14,6 +14,11 @@ return new class extends Migration
         Schema::create('reads', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->nullable(false);
+            $table->bigInteger('isbn')->default(0);
+            $table->integer('book_id')->default(0);
+            $table->boolean('is_approved')->nullable()->default(null);
+            $table->integer('user_id_approved')->default(0);
+            $table->dateTime('approved_at')->nullable()->default(null);
             $table->timestamps();
         });
     }

@@ -14,9 +14,22 @@
                         This is where you create a new read!
                     </p>
 
-                    <p class="mb-6">
-                        {{ $search }}
-                    </p>
+                    <form method="post" action="/reads/create" id="create_frm">
+                        @csrf
+
+                        <p class="mb-6">
+                            <x-input-label for="isbn" value="ISBN Number" />
+                            <x-text-input id="isbn" name="isbn" type="number" class="mt-1 block" />
+                            <x-input-error :messages="$errors->isbn->get('isbn')" class="mt-2" />
+                        </p>
+
+                        <p class="mb-6">
+                            <x-primary-button>
+                                Request Read
+                            </x-primary-button>
+                        </p>
+
+                    </form>
 
                 </div>
             </div>
