@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreReadApprovalRequest;
 use App\Models\Book;
 use App\Models\Read;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreReadRequest;
 use App\Http\Requests\UpdateReadRequest;
+use App\Models\ParentToChild;
 
 class ReadController extends Controller
 {
@@ -20,6 +22,27 @@ class ReadController extends Controller
         return view('read.index', [
             'reads' => $reads,
         ]);
+    }
+
+    public function requests()
+    {
+        $kidIds = ParentToChild::where('user_id_parent', Auth::user()->id)->get()->pluck('user_id_child');
+        $reads = Read::whereIn('user_id', $kidIds)->orderBy('created_at', 'desc')->with('book')->with('requestor')->get();
+
+        return view('read.requests', [
+            'reads' => $reads,
+        ]);
+    }
+
+    public function approve(StoreReadApprovalRequest $request)
+    {
+        Read::where('id', $request->id)->update([
+            'is_approved' => $request->is_approved,
+            'user_id_approved' => Auth::user()->id,
+            'approved_at' => now(),
+        ]);
+
+        return redirect('/reads/requests');
     }
 
     /**

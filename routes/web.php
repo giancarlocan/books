@@ -28,6 +28,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/reads', [ReadController::class, 'index'])->name('reads.index');
     Route::view('/reads/create', 'read.create')->name('reads.create');
     Route::post('/reads/create', [ReadController::class, 'store'])->name('reads.store');
+    Route::get('/reads/requests', [ReadController::class, 'requests'])->name('reads.requests');
+    Route::post('/reads/approve', [ReadController::class, 'approve'])->name('reads.approve');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
