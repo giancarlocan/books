@@ -22,10 +22,11 @@
                         <x-nav-link :href="route('reads.requests')" :active="request()->routeIs('reads.requests')">
                             Requests
                         </x-nav-link>
+                    @else
+                        <x-nav-link :href="route('reads.index')" :active="substr(Route::currentRouteName(), 0, 5) == 'reads'">
+                            Reads
+                        </x-nav-link>
                     @endif
-                    <x-nav-link :href="route('reads.index')" :active="substr(Route::currentRouteName(), 0, 5) == 'reads'">
-                        Reads
-                    </x-nav-link>
                 </div>
             </div>
 
@@ -88,10 +89,11 @@
                 <x-responsive-nav-link :href="route('reads.requests')" :active="request()->routeIs('reads.requests')">
                     Requests
                 </x-responsive-nav-link>
+            @else
+                <x-responsive-nav-link :href="route('reads.index')" :active="substr(Route::currentRouteName(), 0, 5) == 'reads'">
+                    Reads
+                </x-responsive-nav-link>
             @endif
-            <x-responsive-nav-link :href="route('reads.index')" :active="substr(Route::currentRouteName(), 0, 5) == 'reads'">
-                Reads
-            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
