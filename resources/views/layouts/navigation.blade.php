@@ -27,8 +27,11 @@
                             Reads
                         </x-nav-link>
                     @endif
-                    <x-nav-link :href="route('report.index')" :active="substr(Route::currentRouteName(), 0, 5) == 'report'">
+                    <x-nav-link :href="route('report.index')" :active="substr(Route::currentRouteName(), 0, 6) == 'report'">
                         Reports
+                    </x-nav-link>
+                    <x-nav-link :href="route('payment.index')" :active="substr(Route::currentRouteName(), 0, 7) == 'payment'">
+                        Payments
                     </x-nav-link>
                 </div>
             </div>
@@ -97,8 +100,11 @@
                     Reads
                 </x-responsive-nav-link>
             @endif
-        <x-responsive-nav-link :href="route('report.index')" :active="substr(Route::currentRouteName(), 0, 5) == 'report'">
+        <x-responsive-nav-link :href="route('report.index')" :active="substr(Route::currentRouteName(), 0, 6) == 'report'">
             Reports
+        </x-responsive-nav-link>
+        <x-responsive-nav-link :href="route('payment.index')" :active="substr(Route::currentRouteName(), 0, 7) == 'payment'">
+            Payments
         </x-responsive-nav-link>
         </div>
 

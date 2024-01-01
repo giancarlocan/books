@@ -26,6 +26,10 @@
                                     @endif
                                 <br />
                                 <br />
+                                <x-input-label for="payout_{{ $read->id }}" value="Payout for reading" />
+                                <x-text-input id="payout_{{ $read->id }}" type="number" min="0" step="0.01" class="mt-1 block" />
+                                <br />
+                                <br />
                                 <x-secondary-button class="approve" type="button" data-request_id="{{ $read->id }}" data-is_approved="1">
                                     Approve
                                 </x-secondary-button>
@@ -40,6 +44,7 @@
                         @csrf
                         <input type="hidden" id="request_id" name="id" value="" />
                         <input type="hidden" id="is_approved" name="is_approved" value="" />
+                        <input type="hidden" id="payment" name="payment" value="" />
                     </form>
 
                     <script type="text/javascript" src="/js/approve_reads.js"></script>

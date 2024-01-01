@@ -40,6 +40,7 @@ class ReadController extends Controller
             'is_approved' => $request->is_approved,
             'user_id_approved' => Auth::user()->id,
             'approved_at' => now(),
+            'payment' => $request->payment,
         ]);
 
         return redirect('/reads/requests');

@@ -12,9 +12,11 @@ approveReads = function(){
         const outcome = e.target;
         console.log('request ' + outcome.dataset.request_id);
         console.log('approved ' + outcome.dataset.is_approved);
+        console.log('payout ' + document.getElementById('payout_' + outcome.dataset.request_id).value);
 
         document.getElementById('request_id').value = outcome.dataset.request_id;
         document.getElementById('is_approved').value = outcome.dataset.is_approved;
+        document.getElementById('payment').value = document.getElementById('payout_' + outcome.dataset.request_id).value;
         document.getElementById('read_approve_frm').submit();
     }
 

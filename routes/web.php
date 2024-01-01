@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ParentToChildController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReadController;
 use App\Http\Controllers\ReportController;
@@ -37,6 +38,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/report/create', [ReportController::class, 'store'])->name('report.store');
     Route::post('/report/approve', [ReportController::class, 'approve'])->name('report.approve');
     Route::get('/reports/{report_id}', [ReportController::class, 'show'])->name('report.show');
+
+    Route::get('/payments', [PaymentController::class, 'index'])->name('payment.index');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

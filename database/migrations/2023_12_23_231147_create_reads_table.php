@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('report_id')->default(0);
             $table->boolean('is_approved')->nullable()->default(null);
             $table->integer('user_id_approved')->default(0);
+            $table->decimal('payment', 8, 2)->default(0.00);
             $table->dateTime('approved_at')->nullable()->default(null);
             $table->timestamps();
         });
