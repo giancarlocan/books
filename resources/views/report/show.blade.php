@@ -46,6 +46,37 @@
                     <h1 class="text-2xl font-black">Report</h1>
                     {!! nl2br(htmlspecialchars($report->description)) !!}
 
+                    @if (Auth::user()->is_parent)
+                        <script type="text/javascript" src="/js/approve_report.js"></script>
+                        <div class="mt-24">
+                            <p class="mb-6">
+                                Approve or Reject this report
+                            </p>
+
+                            @if ($report->user_id_approved != 0)
+                                <p class="mb-6">
+                                    This report was approved on {{ $report->approved_at }}.
+                                </p>
+                            @else
+                                <form method="post" action="/report/approve" id="report_approve_frm">
+                                    @csrf
+                                    <input type="hidden" name="report_id" value="{{ $report->id }}" />
+                                    <input type="hidden" id="is_approved" name="is_approved" value="" />
+
+                                    <p class="mb-6">
+                                        <x-secondary-button class="approve" type="button" data-is_approved="1">
+                                            Approve
+                                        </x-secondary-button>
+                                        <x-secondary-button class="approve" type="button" data-is_approved="0">
+                                            Reject
+                                        </x-secondary-button>
+                                    </p>
+                                </form>
+                            @endif
+
+                        </div>
+                    @endif
+
                 </div>
             </div>
         </div>
