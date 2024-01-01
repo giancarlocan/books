@@ -24,4 +24,9 @@ class Read extends Model
     {
         return $this->hasOne(User::class, 'id', 'user_id');
     }
+
+    public function report(): HasOne
+    {
+        return $this->hasOne(Report::class, 'id', 'report_id');
+    }
 }

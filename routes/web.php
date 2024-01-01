@@ -3,6 +3,7 @@
 use App\Http\Controllers\ParentToChildController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReadController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,6 +31,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/reads/create', [ReadController::class, 'store'])->name('reads.store');
     Route::get('/reads/requests', [ReadController::class, 'requests'])->name('reads.requests');
     Route::post('/reads/approve', [ReadController::class, 'approve'])->name('reads.approve');
+
+    Route::get('/report/create/{read_id}', [ReportController::class, 'create'])->name('report.create');
+    Route::post('/report/create', [ReportController::class, 'store'])->name('report.store');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
