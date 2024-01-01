@@ -15,7 +15,11 @@ class ReportController extends Controller
      */
     public function index()
     {
-        //
+        $reports = Report::where('user_id', Auth::user()->id)->with('book')->orderBy('created_at', 'desc')->get();
+
+        return view('report.index', [
+            'reports' => $reports,
+        ]);
     }
 
     /**
@@ -42,15 +46,18 @@ class ReportController extends Controller
             'rating' => $request->rating,
             'description' => $request->description,
         ]);
-        return redirect('/dashboard');
+        return redirect('/reports');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Report $report)
+    public function show($reportId)
     {
-        //
+        $report = Report::where('id', $reportId)->with('book')->with('author')->first();
+        return view('report.show', [
+            'report' => $report,
+        ]);
     }
 
     /**

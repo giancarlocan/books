@@ -27,6 +27,9 @@
                             Reads
                         </x-nav-link>
                     @endif
+                    <x-nav-link :href="route('report.index')" :active="substr(Route::currentRouteName(), 0, 5) == 'report'">
+                        Reports
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -94,6 +97,9 @@
                     Reads
                 </x-responsive-nav-link>
             @endif
+        <x-responsive-nav-link :href="route('report.index')" :active="substr(Route::currentRouteName(), 0, 5) == 'report'">
+            Reports
+        </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->

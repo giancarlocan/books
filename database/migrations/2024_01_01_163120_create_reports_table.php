@@ -18,6 +18,9 @@ return new class extends Migration
             $table->integer('book_id')->default(0)->nullable(false);
             $table->integer('rating')->default(0)->nullable(false);
             $table->text('description');
+            $table->boolean('is_approved')->nullable()->default(null);
+            $table->integer('user_id_approved')->default(0);
+            $table->dateTime('approved_at')->nullable()->default(null);
             $table->timestamps();
         });
     }
